@@ -1,0 +1,137 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family: 'Poppins', sans-serif;
+}
+/*
+:root 란 https://developer.mozilla.org/ko/docs/Web/CSS/:root
+html 선택자와 똑같다고 보면 됨
+
+--cer 속성값을 담는 변수같은녀석
+--cel, --clr 이런식으로 --뒤에 이름은 마음대로 붙여서 쓰면 됨
+*/
+:root{
+    --cer: #222327;
+}
+body {
+    display:flex;
+    justify-content: center;
+    align-items:center;
+    min-height:100vh;
+    background:var(--cer);
+}
+.navigation{
+    position:relative;
+    width:400px;
+    height:70px;
+    background:#fff;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    border-radius:10px;
+}
+.navigation ul { 
+    position:relative;
+    display:flex;
+    width:350px; 
+}
+.navigation ul li {
+    position:relative; 
+    list-style: none;
+    width:70px;
+    height:70px; 
+    z-index:1;
+}
+.navigation ul li a {
+    position:relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width:100%;
+    text-align: center;
+    font-weight: 500;
+}
+.navigation ul li a .icon{
+    position: relative; /* top:0;을 넣어야 아래 hover에서 top:-35px 했을때 애니메이션 적용 됨*/
+    display: block;
+    line-height: 75px;
+    font-size: 1.5em;
+    text-align: center;
+    transition:0.4s;
+    color: var(--cer);
+}
+.navigation ul li.active a .icon{
+    /* top:-35px;  */
+    transform:translateY(-32px); /* top:-35px 하면 트랜지션효과가 안남;*/ 
+}
+.navigation ul li a .text {
+    position:absolute; transform:translateY(20px);
+    color: var(--clr);
+    font-weight:400;
+    font-size:0.75em;
+    letter-spacing:0.05em;
+    transition:0.5s;
+    opacity:0;
+}
+
+.navigation ul li.active a .text{
+    opacity:1;
+    transform: translateY(10px);
+}
+.indicator {
+    position:absolute;
+    left:0;
+    top:-50%;
+    width: 70px;
+    height: 70px;
+    background: #29fd53;
+    border-radius:50%;
+    border:6px solid var(--cer);
+    transition:0.5s;
+}
+.indicator::before {
+    content:'';
+    position:absolute;
+    top:50%; 
+    left:-22px;
+    width: 22px;
+    height: 22px;
+    background:transparent;
+    border-top-right-radius: 50px;
+    box-shadow:0px -7px 0 0 var(--cer);
+}
+.indicator::after {
+    content:'';
+    position:absolute;
+    top:50%; 
+    right:-22px;
+    width: 22px;
+    height: 22px;
+    background:transparent;
+    border-top-left-radius: 50px;
+    box-shadow:0px -7px 0 0 var(--cer);
+}
+/*
+.navigation ul li:nth-child(1).active ~ .indicator {
+    transform:translateX(calc(70px * 0));
+}
+.navigation ul li:nth-child(2).active ~ .indicator {
+    transform:translateX(calc(70px * 1));
+}
+.navigation ul li:nth-child(3).active ~ .indicator {
+    transform:translateX(calc(70px * 2));
+}
+.navigation ul li:nth-child(4).active ~ .indicator {
+    transform:translateX(calc(70px * 3));
+}
+.navigation ul li:nth-child(5).active ~ .indicator {
+    transform:translateX(calc(70px * 4));
+}
+.navigation ul li:nth-child(6).active ~ .indicator {
+    transform:translateX(calc(70px * 5));
+}
+*/
